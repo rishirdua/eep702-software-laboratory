@@ -1,0 +1,172 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{graphicx}
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{EEP702, Software Laboratory} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Partition Problem \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Rishi Dua, 2010EE50557} % Your name
+
+\date{\normalsize 9 February, 2014} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Partition Problem}
+
+
+\subsection{Problem statement}
+
+There are N packets, each with one or more candies. There are K students among which the packets have to be distributed. (Assume K less N for all cases). The parameters N and K have to be provided by the user at run-time. Each student gets only one packet. The number of candies in various packets are (x1, x2, x3,....xk ) , where xi denotes the number of candies in the ith packet. Find the number of triplets (x1, x2, x3) possible such that sum of the candies (x1 + x2 + x3) is even.\\
+Divide the packets into two parts (p1 and p2) such that the difference (|p1-p2|) is minimum, where p1 and p2 are the total number of candies in part 1 and part 2 respectively.
+
+\subsection{Abstract}
+
+This problem was originally designed for Dynamic Programming. However, it has been solved as a deterministic problem as it is trivial.
+
+
+\subsection{Specification And Assumptions}
+{\textbf {Tool Specifications:}}\\
+Language used: Java\\
+Platform: Ubuntu 12.04\\
+Additional tools used: none\\
+Eclipse Version: Version: 3.7.2\\
+
+{\textbf{Assumptions}}\\
+Input is taken one at a time\\
+The list of x1 to xn is seperated by commas\\
+Prints each combination of triplet whose sum is even on terminal\\
+
+
+\subsection{Flow chart}
+{\center{\includegraphics[height=4in]{flowchart.png}}}
+
+
+\subsection{Logic Implementation}
+\textbf{Following are the two main steps to solve this problem:}\\
+\begin{enumerate}
+\item Calculate sum of the array. If sum is odd, there can not be two subsets with equal sum, so return false.
+\item If sum of array elements is even, calculate sum/2 and find a subset of array with sum equal to sum/2.
+\end{enumerate}
+
+The first step is simple. The second step is crucial, it can be solved either using recursion or Dynamic Programming.\\
+
+
+\subsection{Execution Directive}
+\textbf{Compiling}:
+
+javac dp.java\\
+
+
+\textbf{Running}:\\
+java dp\\
+
+
+\subsection{Output Of The Program}
+\begin{verbatim}
+
+Part A
+Enter N
+10
+Enter K
+4
+Enter x0
+10
+Enter x1
+20
+Enter x2
+30
+Enter x3
+3
+Enter x4
+3
+Enter x5
+3
+Enter x6
+3
+Enter x7
+3
+Enter x8
+3
+Enter x9
+2
+The total number of possible triplets such that the sum is even is 64
+
+Part B
+The students get packets containing the following number of candies:
+0
+2	1
+3	2
+3	3
+3	4
+3	5
+3	6
+3	7
+10	8
+20	9
+30	
+
+Part C
+Partition problem
+true
+5 = 2+3
+5 = 2+3
+5 = 2+3
+5 = 2+3
+5 = 2+3
+5 = 2+3
+
+\end{verbatim}
+\subsection{Result}
+Solved the trivial partition problem.
+
+\begin{itemize}
+\item Recognized when dynamic programming is a plausible approach.  E.g., recursive formulation, repeated subproblems, Global opt depends on opt subsolution, but not details thereof.
+\end{itemize}
+\end{document}

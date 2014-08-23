@@ -1,0 +1,233 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{graphicx}
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{EEP702, Software Laboratory} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Java Programming Assignment \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Rishi Dua, 2010EE50557} % Your name
+
+\date{\normalsize 12 January, 2014} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Reverse Spiral}
+Write a program in C/C++/Java to solve following two problems:
+
+\subsection{Problem statement}
+To print matrix (M) elements in reverse spiral order i.e., starting from the centre element, print all the elements in spiral order until the first element M[0][0] is reached. Matrix M is of order n where n is odd
+
+\subsection{Abstract}
+
+Traversal (also known as tree search) refers to the process of visiting (examining and/or updating) each node in a tree data structure, exactly once, in a systematic way. The problem aims at traversing a matrix in reverse spiral order.\\
+
+The java code aims at traversing through all elements of a matrix in a reverse spiral form. The problem involves using loops and recursion to match two strings containing wildcard characters '?' and '*' . '?' denotes no or exactly one character and '*' denotes no or many characters.
+
+\subsection{Specification And Assumptions}
+{\textbf {Specifications:}}\\
+Language used: Java\\
+Platform: Ubuntu 12.04\\
+Libraries used: java.io.BufferedReader\\
+IDE: Eclipse\\
+
+{\textbf {Assumptions:}}\\
+n is odd
+
+\newpage
+\subsection{Flow chart}
+ {\center\includegraphics[height=10 in]{assgn1part1.png}}
+
+\subsection{Logic Implementation}
+Start from the centremost element.\\
+Move in the following order: left, down, right and top increasing the number of steps moved by one every time.\\
+
+\subsection{Execution Directive}
+java ReverseSpiral
+\subsection{Output Of The Program}
+Enter value for n:\\
+\\
+5\\
+5 by 5 matrix\\
+\\
+Enter values for following:\\
+\\
+(0,0)\\
+1\\
+(0,1)\\
+2\\
+(0,2)\\
+3\\
+(0,3)\\
+4\\
+(0,4)\\
+5\\
+(1,0)\\
+6\\
+(1,1)\\
+7\\
+(1,2)\\
+8\\
+(1,3)\\
+9\\
+(1,4)\\
+10\\
+(2,0)\\
+11\\
+(2,1)\\
+12\\
+(2,2)\\
+13\\
+(2,3)\\
+14\\
+(2,4)\\
+15\\
+(3,0)\\
+16\\
+(3,1)\\
+17\\
+(3,2)\\
+18\\
+(3,3)\\
+19\\
+(3,4)\\
+20\\
+(4,0)\\
+21\\
+(4,1)\\
+22\\
+(4,2)\\
+23\\
+(4,3)\\
+24\\
+(4,4)\\
+25\\
+Output:\\
+13\\
+12\\
+17\\
+18\\
+19\\
+14\\
+9\\
+8\\
+7\\
+6\\
+11\\
+16\\
+21\\
+22\\
+23\\
+24\\
+25\\
+20\\
+15\\
+10\\
+5\\
+4\\
+3\\
+2\\
+1\\
+
+
+\subsection{Result}
+The program prints matrix (M) elements in reverse spiral order i.e., starting from the centre element, print all the elements in spiral order until the first element M[0][0] is reached. Matrix M is of order n where n is odd
+
+\subsection{Conclusion}
+Successfully traversed through the elements of a matrix in reverse-spiral order as required.
+
+\section{String Matching}
+
+\subsection{Problem statement}
+To match two strings containing wildcard characters '?' and '*' . '?' denotes no or exactly one character and '*' denotes no or many characters.
+
+\subsection{Abstract}
+A regular expression (abbreviated regex or regexp) is a sequence of characters that forms a search pattern, mainly for use in pattern matching with strings. The problem aims at matching two strings containing wildcards.\\
+
+The problem is solved using Java. The problem involves using loops and recursion to match two strings containing wildcard characters '?' and '*' . '?' denotes no or exactly one character and '*' denotes no or many characters.
+
+\subsection{Specification And Assumptions}
+{\textbf {Specifications:}}\\
+Language used: Java\\
+Platform: Ubuntu 12.04\\
+Libraries used: java.io.BufferedReader\\
+IDE: Eclipse\\
+
+{\textbf {Assumptions:}}\\
+Only * and ? are treated as wildcards
+
+\newpage
+\subsection{Flow chart}
+ {\center\includegraphics[height=10 in]{assgn1part1.png}}
+
+\subsection{Logic Implementation}
+Recursive calling is used\\
+First of all, trivial cases are checked\\
+If the first character is a ?, the remaining string is matched with the other string as it is and also with the first character removed
+If the first character is a ?, the remaining string is matched with the other string as it is and also with all the permutations beginning with the next non-wildcard character of the first string
+
+
+\subsection{Execution Directive}
+java RegexMatcher
+
+\subsection{Output Of The Program}
+Enter string 1\\
+hello\\
+Enter string 2\\
+h*llo?\\
+result: the strings match\\
+
+\subsection{Result}
+The program can do a simple regex comparison of two given strings.\\
+Normal regex comparison works when both the strings contain wildcards. This code works even then.
+
+\subsection{Conclusion}
+Successfully compared two strings, when one/both/none contain ? and * wildcard characters.
+
+\end{document}

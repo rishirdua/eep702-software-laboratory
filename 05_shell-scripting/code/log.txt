@@ -1,0 +1,10 @@
+mv: `.' and `././.' are the same file
+mv: cannot stat `match.txt': No such file or directory
+mv: `.' and `././.' are the same file
+mv: `match.txt' and `/media/teknovates/iit/sem8/eep702/ass5/submit/code/match.txt' are the same file
+mv: `.' and `././.' are the same file
+mv: `match.txt' and `/media/teknovates/iit/sem8/eep702/ass5/submit/code/match.txt' are the same file
+mv: `.' and `././.' are the same file
+mv: `match.txt' and `/media/teknovates/iit/sem8/eep702/ass5/submit/code/match.txt' are the same file
+mv: `.' and `././.' are the same file
+mv: cannot stat `match.txt': No such file or directory

@@ -1,0 +1,50 @@
+<rss xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" version="2.0">
+<channel>
+<title>Yahoo! Weather - Los Angeles, CA</title>
+<link>
+http://us.rd.yahoo.com/dailynews/rss/weather/Los_Angeles__CA/*http://weather.yahoo.com/forecast/USCA0638_c.html
+</link>
+<description>Yahoo! Weather for Los Angeles, CA</description>
+<language>en-us</language>
+<lastBuildDate>Sat, 25 Jan 2014 10:47 am PST</lastBuildDate>
+<ttl>60</ttl>
+<yweather:location city="Los Angeles" region="CA" country="United States"/>
+<yweather:units temperature="C" distance="km" pressure="mb" speed="km/h"/>
+<yweather:wind chill="24" direction="0" speed="0"/>
+<yweather:atmosphere humidity="21" visibility="16.09" pressure="1022.3" rising="2"/>
+<yweather:astronomy sunrise="6:54 am" sunset="5:15 pm"/>
+<image>
+<title>Yahoo! Weather</title>
+<width>142</width>
+<height>18</height>
+<link>http://weather.yahoo.com</link>
+<url>
+http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif
+</url>
+</image>
+<item>
+<title>Conditions for Los Angeles, CA at 10:47 am PST</title>
+<geo:lat>34.05</geo:lat>
+<geo:long>-118.25</geo:long>
+<link>
+http://us.rd.yahoo.com/dailynews/rss/weather/Los_Angeles__CA/*http://weather.yahoo.com/forecast/USCA0638_c.html
+</link>
+<pubDate>Sat, 25 Jan 2014 10:47 am PST</pubDate>
+<yweather:condition text="Fair" code="34" temp="24" date="Sat, 25 Jan 2014 10:47 am PST"/>
+<description>
+<![CDATA[
+<img src="http://l.yimg.com/a/i/us/we/52/34.gif"/><br /> <b>Current Conditions:</b><br /> Fair, 24 C<BR /> <BR /><b>Forecast:</b><BR /> Sat - Mostly Sunny. High: 24 Low: 11<br /> Sun - Mostly Cloudy. High: 22 Low: 10<br /> Mon - Sunny. High: 22 Low: 10<br /> Tue - Partly Cloudy. High: 26 Low: 13<br /> Wed - Partly Cloudy. High: 28 Low: 13<br /> <br /> <a href="http://us.rd.yahoo.com/dailynews/rss/weather/Los_Angeles__CA/*http://weather.yahoo.com/forecast/USCA0638_c.html">Full Forecast at Yahoo! Weather</a><BR/><BR/> (provided by <a href="http://www.weather.com" >The Weather Channel</a>)<br/>
+]]>
+</description>
+<yweather:forecast day="Sat" date="25 Jan 2014" low="11" high="24" text="Mostly Sunny" code="34"/>
+<yweather:forecast day="Sun" date="26 Jan 2014" low="10" high="22" text="Mostly Cloudy" code="28"/>
+<yweather:forecast day="Mon" date="27 Jan 2014" low="10" high="22" text="Sunny" code="32"/>
+<yweather:forecast day="Tue" date="28 Jan 2014" low="13" high="26" text="Partly Cloudy" code="30"/>
+<yweather:forecast day="Wed" date="29 Jan 2014" low="13" high="28" text="Partly Cloudy" code="30"/>
+<guid isPermaLink="false">USCA0638_2014_01_29_7_00_PST</guid>
+</item>
+</channel>
+</rss>
+<!--
+ api177.weather.sg3.yahoo.com Sat Jan 25 19:21:57 PST 2014 
+-->

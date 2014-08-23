@@ -1,0 +1,169 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{graphicx}
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{EEP702, Software Laboratory} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Ubuntu Weather Application \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Rishi Dua, 2010EE50557} % Your name
+
+\date{\normalsize 27 January, 2014} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Weather Application}
+
+
+\subsection{Problem statement}
+Develop an ubuntu app which can accomplish following two tasks:
+\begin{enumerate}
+\item Forecasting next few days weather conditions
+\item Keep record of past few days' weather conditions (max 30 days) in to your database and show it as a strip chart which has a rewind / fast fwd button.
+\end{enumerate}
+ 
+Use tcl/tk for the GUI to interact with the user and python for other operations. The user will be asked to enter name of a place for which weather conditions have to be forecasted, the number of days (n) for which to show information, and to press a button to decide whether to forecast or tell about the past n days weather conditions. Use MySQL as database. Max 5 days' information need to be recorded. Make use of yahoo api for weather forecasting info. Develop html documentation using Doxygen. Give user an option to provide details of the place either by specifying name of that place or manually entering geographical location (lat/ long).
+
+
+\subsection{Abstract}
+
+Tcl (Tool Command Language) is a very powerful but easy to learn dynamic programming language, suitable for a very wide range of uses, including web and desktop applications, networking, administration, testing and many more. Open source and business-friendly, Tcl is a mature yet evolving language that is truly cross platform, easily deployed and highly extensible.\\
+
+Tk is a graphical user interface toolkit that takes developing desktop applications to a higher level than conventional approaches. Tk is the standard GUI not only for Tcl, but for many other dynamic languages, and can produce rich, native applications that run unchanged across Windows, Mac OS X, Linux and more\\
+
+\subsection{Specification And Assumptions}
+{\textbf {Tool Specifications:}}\\
+Language used: Tcl\\
+Platform: Ubuntu 12.04\\
+Additional tools used: python\\
+Bash Version: GNU bash, version 4.2.25(1)-release (x86\_64-pc-linux-gnu)\\
+TK Version: 8.5.12\\
+API used: http://query.yahooapis.com/v1/public/\\
+MySQL: Used from the package lamp. The SQL dump is attached with the code\\
+DoxyGen: This was used to generate the code documentation\\
+
+{\textbf{Assumptions}}\\
+Yahoo API provides weather report for all woeid (cities)\\
+
+\textbf{Problem specifications}
+Here is a list of all namespaces:\\
+cleanup	\\
+getweather	\\
+woeidfromcordi	\\
+woeidfromquery	\\
+writefutureweather	\\
+writepastweather	\\
+
+Here is a list of all namespace members:
+cleandb() : cleanup \\
+getwoeid() : woeidfromcordi , woeidfromquery\\
+parseweather() : getweather\\
+showweather() : writefutureweather , writepastweather\\
+yahootosql() : getweather , writepastweather , writefutureweather , woeidfromcordi\\
+
+
+\newpage
+\subsection{Flow chart}
+ {\center\includegraphics[height=10 in]{flowchart.jpg}}
+The flowchart for cron job is\\
+ {\center\includegraphics[height=4 in]{cronflow.jpg}}
+
+
+\subsection{Logic Implementation}
+The problem is broken into 3 parts
+
+\textbf{1. Getting woeid}\\
+APIs used to get woeid:\\
+
+Searching by city name:\\
+http://query.yahooapis.com/v1/public/yql?q=select\%20*\%20from\%20geo.places\%\\
+20where\%20text\%3D\%22Place\%20name\%22\&format=xml\\
+
+Searching by cordinates:\\
+http://query.yahooapis.com/v1/public/yql?q=select\%20*\%20from\%20geo.placefinder\%\\
+20where\%20text="37.416275,-122.025092"\%20and\%20gflags="R"\&format=xml\\
+
+Example YQL Queries for the same:\\
+select city, woeid from geo.placefinder where text="delhi"\\
+select city, woeid from geo.placefinder where text="28.7,77.2" and gflags="R"\\
+
+\textbf{2. Getting weather}\\
+The user entered values are parsed and passed to the python as shell arguments\\
+Tcl file calls the python code which uses the Yahoo weather API and stores the results in the database\\
+This result is fetched by tcl and shown on the user interface\\
+Exceptions are caught by python file whenever there is no internet connection\\
+
+\textbf{3. Cleaning database for records older than 30 days}
+The software utility cron is a time-based job scheduler in Unix-like computer operating systems. People who set up and maintain software environments use cron to schedule jobs (commands or shell scripts) to run periodically at fixed times, dates, or intervals. It typically automates system maintenance or administration. Using a small python script, all records are removed by the cron job.
+
+\subsection{Execution Directive}
+No compilation required\\
+Directly run by typing
+
+./main.tcl\\
+
+\subsection{Output Of The Program}
+ {\center\includegraphics[height=4 in]{ss1.png}}
+ {\center\includegraphics[height=4 in]{ss2.png}}
+ {\center\includegraphics[height=4 in]{ss3.png}}
+ {\center\includegraphics[height=4 in]{ss4.png}}
+
+\subsection{Result}
+A weather application is developed using the following:\\
+MySQL: Used from the package lamp. The SQL dump is attached with the code\\
+DoxyGen: This was used to generate the code documentation\\
+
+\textbf{Problems encountered:}\\
+Testing internet connectivity\\
+Solution: The returned file is parsed and exception is caught if the return size is 0\\
+
+
+\subsection{Conclusion}
+Successfully developed a code that gets weather from Yahoo API, stores it into a database and displays to the user.
+\end{document}

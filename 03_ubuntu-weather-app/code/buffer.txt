@@ -1,0 +1,2 @@
+Weather was as follows:
+Weather for Tue, 2014-03-18 will be between 47 and 64 Celcius (AM Clouds/PM Sun)

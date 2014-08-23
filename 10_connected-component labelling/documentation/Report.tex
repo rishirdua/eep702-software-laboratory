@@ -1,0 +1,155 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{graphicx}
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{EEP702, Software Laboratory} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Connected Component Labelling \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Rishi Dua, 2010EE50557} % Your name
+
+\date{\normalsize April 16, 2014} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Python Assignment}
+
+
+\subsection{Problem statement}
+\begin {enumerate}
+\item There is a mass of land containing some finites number of water bodies. Let the piece of land be represented by a 2-D matrix, whose each cell represents a unit area. Value '0' of a cell denotes
+that it comes under land area and '1' denotes that it comes under water body. If the cells connected by a 4-point connectivity forms a single water body, find the total number of water bodies.
+\item If the cells connected by a 8-point connectivity forms a single water body, find the total number of water bodies.
+\item Label the water bodies so that if user specifies a cell (m,n), the program must tell whether it comes under a water body.
+\end{enumerate}
+\subsection{Abstract}
+
+Connected-component labeling (alternatively connected-component analysis, blob extraction, region labeling, blob discovery, or region extraction) is an algorithmic application of graph theory, where subsets of connected components are uniquely labeled based on a given heuristic. Connected-component labeling is not to be confused with segmentation.\\
+
+Connected-component labeling is used in computer vision to detect connected regions in binary digital images, although color images and data with higher dimensionality can also be processed. When integrated into an image recognition system or human-computer interaction interface, connected component labeling can operate on a variety of information. Blob extraction is generally performed on the resulting binary image from a thresholding step. Blobs may be counted, filtered, and tracked.\\
+
+Python is a widely used general-purpose, high-level programming language. Its design philosophy emphasizes code readability, and its syntax allows programmers to express concepts in fewer lines of code than would be possible in languages such as C. The language provides constructs intended to enable clear programs on both a small and large scale.\\
+
+Python supports multiple programming paradigms, including object-oriented, imperative and functional programming or procedural styles. It features a dynamic type system and automatic memory management and has a large and comprehensive standard library.\\
+
+
+\subsection{Specification And Assumptions}
+{\textbf {Tool Specifications:}}\\
+Python 2.7\\
+Platform: Ubuntu 12.04\\
+Bash Version: GNU bash, version 4.2.25(1)-release (x86\_64-pc-linux-gnu)\\
+
+\textbf{Problem specifications}:
+Assume the following utilities are present on the system\\
+Python\\
+Also works if input is negative\\
+
+
+{\textbf{Assumptions}}\\
+The user gives inputs in the format specified
+\newpage
+\subsection{Flow chart}
+The flowcharts is as follows
+
+ {\center\includegraphics[scale=0.65]{flowchart.png}}\\
+\newpage
+
+
+\subsection{Logic Implementation}
+\textbf{Two-pass Algorithm}
+Relatively simple to implement and understand, the two-pass algorithm iterates through 2-dimensional, binary data. The algorithm makes two passes over the image: the first pass to assign temporary labels and record equivalences and the second pass to replace each temporary label by the smallest label of its equivalence class.\\
+
+The input data can be modified in situ (which carries the risk of data corruption), or labeling information can be maintained in an additional data structure.\\
+
+Connectivity checks are carried out by checking neighbor pixels' labels (neighbor elements whose labels are not assigned yet are ignored), or say, the North-East, the North, the North-West and the West of the current pixel (assuming 8-connectivity). 4-connectivity uses only North and West neighbors of the current pixel. The following conditions are checked to determine the value of the label to be assigned to the current pixel (4-connectivity is assumed)\\
+
+Conditions to check:\\
+\begin{itemize}
+
+\item Does the pixel to the left (West) have the same value as the current pixel?\\
+Yes: We are in the same region. Assign the same label to the current pixel\\
+No:  Check next condition
+
+\item Do both pixels to the North and West of the current pixel have the same value as the current pixel but not the same label?\\
+Yes :  We know that the North and West pixels belong to the same region and must be merged. Assign the current pixel the minimum of the North and West labels, and record their equivalence relationship\\
+No :  Check next condition
+
+\item Does the pixel to the left (West) have a different value and the one to the North the same value as the current pixel?\\
+Yes :  Assign the label of the North pixel to the current pixel\\
+No :  Check next condition
+
+\item Do the pixel's North and West neighbors have different pixel values than current pixel?\\
+Yes :  Create a new label id and assign it to the current pixel\\
+
+\end{itemize}
+The algorithm continues this way, and creates new region labels whenever necessary. The key to a fast algorithm, however, is how this merging is done. This algorithm uses the union-find data structure which provides excellent performance for keeping track of equivalence relationships. Union-find essentially stores labels which correspond to the same blob in a disjoint-set data structure, making it easy to remember the equivalence of two labels by the use of an interface method E.g.: findSet(l). findSet(l) returns 
+
+\subsection{Execution Directive}
+pthon code.py
+
+\subsection{Output Of The Program}
+\includegraphics[scale=0.6]{screenshot.png}\\
+
+\subsection{Result}
+
+Successfully finds 4 connected and 8 connected islands and shows labels for a given block
+\textbf{Problems encountered:}
+\begin{enumerate}
+\item Execute rights error
+\end{enumerate}
+
+
+Successfully computes the total number of water bodies where the cells form 4-point connectivity.\\
+\\
+Also, computes the total number of water bodies where the cells form 8-point connectivity and gives label for a given input point.\\
+
+\subsection{Conclusion}
+Learnt techniques like using recursive functions to make the job simpler to implement DFS algorithm, using function parameter calling, using multi-dimensional arrays; using exception handling; using looping and conditional statements to name a few.\\
+
+\end{document}

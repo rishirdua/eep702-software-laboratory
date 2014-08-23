@@ -1,0 +1,194 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{graphicx}
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{booktabs}
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{EEP702, Software Laboratory} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Inline Assembly in C\\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Rishi Dua, 2010EE50557} % Your name
+
+\date{\normalsize February 20, 2014} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Assembly code in C}
+
+
+\subsection{Problem statement}
+\begin {enumerate}
+\item Given two integers, write a time efficient c code, that spends as less time in memory access and more in calculations as possible, to get their GCD and LCM. Use directives for conditional compilation of code as follows.\\
+Identifier Status: 1 -> GCD\\
+Identifier Status: 0 -> LCM\\
+Find the critical parts of code that consume more percentage of time and replace those parts with inline assembly coding to optimize speed and compare the time profiling for both codes.\\
+\item Find the most significant non zero bit position for largest of the two given integers using pure c code and inline assembled c code and show which one is faster.
+\item Convert the given integer(assumed to be angle in degrees) to radians and find the floating cosine value with pure c and inline assembled c and determine fastest one.
+
+\end{enumerate}
+\subsection{Abstract}
+
+All parts have been implemented.\\
+
+In mathematics, the greatest common divisor (gcd), also known as the greatest common factor (gcf), or highest common factor (hcf), of two or more integers (at least one of which is not zero), is the largest positive integer that divides the numbers without a remainder. For example, the GCD of 8 and 12 is 4.\\
+
+An assembly language is a low-level programming language for a computer, or other programmable device, in which there is a very strong (generally one-to-one) correspondence between the language and the architecture's machine code instructions. Each assembly language is specific to a particular computer architecture, in contrast to most high-level programming languages, which are generally portable across multiple architectures, but require interpreting or compiling.\\
+
+Assembly language is converted into executable machine code by a utility program referred to as an assembler; the conversion process is referred to as assembly, or assembling the code.\\
+
+
+\subsection{Specification And Assumptions}
+{\textbf {Tool Specifications:}}\\
+Platform: Ubuntu 12.04\\
+Bash Version: GNU bash, version 4.2.25(1)-release (x86\_64-pc-linux-gnu)\\
+
+\textbf{Problem specifications}:
+Assume the following utilities are present on the system\\
+C compliler\\
+
+{\textbf{Assumptions}}\\
+The time required to read input from file is negligible\\
+
+
+\subsection{Logic Implementation}
+\textbf{GCD and LCM}\\
+
+We use the Euclidean algorithm, which uses a division algorithm such as long division in combination with the observation that the gcd of two numbers also divides their difference. To compute gcd(48,18), divide 48 by 18 to get a quotient of 2 and a remainder of 12. Then divide 18 by 12 to get a quotient of 1 and a remainder of 6. Then divide 12 by 6 to get a remainder of 0, which means that 6 is the gcd. Note that we ignored the quotient in each step except to notice when the remainder reached 0, signalling that we had arrived at the answer.\\
+
+\textbf{MSB of Larger Integer}
+We use bit shifting. The CPU has an automatic bit-detector already, used for integer to float conversion. So we use that.\\
+
+Pseudo-code:\\
+
+number = gets\\
+bitpos = 0\\
+while number != 0\\
+  bitpos++            // increment the bit position\\
+  number = number >> 1 // shift the whole thing to the right once\\
+end\\
+puts bitpos\\
+if the number is zero, bitpos is zero.\\
+
+\textbf{Cosine of angle}
+\begin{enumerate}
+\item Convert angle to radian
+\item Use systems'c cosine function
+\end{enumerate}
+
+
+\subsection{Execution Directive}
+For LCM
+
+gcc code.c -lm -pg
+./a.out 
+
+For GCD
+
+gcc code.c -lm -DGCD -pg
+./a.out 
+
+lm is used for math functions
+pg is used for profiling 
+
+On running the program, gmon.out is created which can be read using
+
+gmon a.out gmon.out >profileresults.txt
+
+\subsection{Flowchart}
+\includegraphics[scale=0.5]{flowchart.jpg}\\
+
+\subsection{Output Of The Program}
+\includegraphics[scale=0.75]{screenshot.png}\\
+
+\subsection{Result}
+
+\textbf{Running time}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Function} & C code (ms) & Assembly code (ms)  \\ \midrule
+
+GCD/LCM  & 49          & 27                 \\
+MSB      & 65          & 54                 \\
+cos      & 64          & 60                \\ \bottomrule
+\end{tabular}
+\caption{Running time comparison}
+\label{Running time comparison}
+\end{table}
+
+
+Successfully calculated GCD using C code and inline assembly code.
+
+\textbf{Problems encountered:}
+\begin{enumerate}
+\item Code was too small to optimize
+\item The least count of gprof is too high. Therefore usng system time was required to calculate time.
+\end{enumerate}
+
+\subsection{Conclusion}
+Learnt using inline assembly. Generally the inline term is used to instruct the compiler to insert the code of a function into the code of its caller at the point where the actual call is made. Such functions are called "inline functions". The benefit of inlining is that it reduces function-call overhead.\\
+
+Now, it's easier to guess about inline assembly. It is just a set of assembly instructions written as inline functions. Inline assembly is used for speed, and you ought to believe me that it is frequently used in system programming.\\
+
+We can mix the assembly statements within C/C++ programs using keyword asm. Inline assembly is important because of its ability to operate and make its output visible on C/C++ variables.\\
+
+Library management did not give a measurable improvement with optimization.\\
+
+\textbf{Performance comparison of assembly with c}
+
+\begin{itemize}
+\item Most of the code given in this assignment to optimize are too small that compiler generated code worked more or less same (or even better in some cases.
+
+\item Compilers can do optimizations that most people can't even imagine. They can take in account inter-procedural optimization and whole-program optimization. Assembly programmer has to make well-defined functions with a well-defined call interface. This prevents many of the optimization methods that compilers use, such as register allocation, constant propagation, common subexpression elimination across functions etc.
+
+
+\end{itemize}
+
+\end{document}

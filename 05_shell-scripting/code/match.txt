@@ -1,0 +1,2 @@
+random:
+/media/teknovates/iit/sem8/eep702/ass5/code/rishi/random/test.c

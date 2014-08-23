@@ -1,0 +1,213 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{graphicx}
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{EEP702, Software Laboratory} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Shell Scripting \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Rishi Dua, 2010EE50557} % Your name
+
+\date{\normalsize February 4, 2014} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Bash program}
+
+
+\subsection{Problem statement}
+\begin {enumerate}
+\item Compulsory Problems: \\
+The inputs are name of the folder to be opened and the extension type of the files and these are to be passed through commandline.
+
+sh <scriptname><foldername><extension type>
+
+Open the user given folder and search for the subfolders with names having only small letters and without spaces.
+
+In these subfolders, write the names of files that have the user given extension into match.txt in the following format.\\
+<subfolder matching pattern>\\
+<Files in that subfolder matching extension >\\
+<next sufolder matching pattern>...and so on.
+
+If the given extension is a c or sh, execute the files assuming the files require no runtime or compile time arguments
+
+\item Optional Problems
+\begin {itemize}
+\item PROBLEM 2:(Difficulty level:** :bonus 5 marks)
+
+Convert all the capital letters to small case and remove blank spaces in the names of all the subfolders
+of the given folder.
+
+\item PROBLEM 3:(Difficulty level:*** :bonus 5 marks)
+
+Convert gif files into png in the subfolders which match pattern when the extension type is given gif
+
+\end{itemize}
+\end{enumerate}
+\subsection{Abstract}
+
+Bash is a Unix shell written by Brian Fox for the GNU Project as a free software replacement for the Bourne shell (sh). It has been distributed widely as the shell for the GNU operating system and as a default shell on Linux and Mac OS X. It has been ported to Microsoft Windows and distributed with Cygwin and MinGW, to DOS by the DJGPP project, to Novell NetWare and to Android via various terminal emulation applications.\\
+
+Bash is a command processor, typically run in a text window, allowing the user to type commands which cause actions. Bash can also read commands from a file, called a script. Like all Unix shells, it supports filename wildcarding, piping, here documents, command substitution, variables and control structures for condition-testing and iteration. The keywords, syntax and other basic features of the language were all copied from sh. Other features, e.g., history, were copied from csh and ksh. Bash is a POSIX shell but with a number of extensions.\\
+
+Regular expression (abbreviated regex or regexp) is a sequence of characters that forms a search pattern, mainly for use in pattern matching with strings, or string matching, i.e. "find and replace"-like operations.\\
+
+ls is a command to list files in Unix and Unix-like operating systems. ls is specified by POSIX and the Single UNIX Specification.\\
+
+Find command is used to search a folder hierarchy for filename(s) that meet a desired criteria: Name, Size, File Type.\\
+
+Grep is a command-line utility for searching plain-text data sets for lines matching a regular expression. Grep was originally developed for the Unix operating system, but is available today for all Unix-like systems. Its name comes from the ed command g/re/p (globally search a regular expression and print), which has the same effect: doing a global search with the regular expression and printing all matching lines.\\
+
+We use a combination of these with output redirecting to solve the problem statements.\\
+
+\newpage
+\subsection{Specification And Assumptions}
+{\textbf {Tool Specifications:}}\\
+Language used: Bash\\
+Platform: Ubuntu 12.04\\
+Additional tools used: awk, csh\\
+Bash Version: GNU bash, version 4.2.25(1)-release (x86\_64-pc-linux-gnu)\\
+
+\textbf{Problem specifications}:
+Assume the following utilities are present on the system\\
+ls\\
+sed\\
+grep\\
+
+{\textbf{Assumptions}}\\
+User has read and write prividlges to run the program, create files and directories
+
+\newpage
+\subsection{Flow chart}
+The flowcharts are in the following pages
+Problem 1:\\
+ {\center\includegraphics[height=6 in]{flowcharta.jpg}}\\
+\newpage
+Problem 2:\\
+ {\center\includegraphics[height=3 in]{flowchartb.jpg}}\\
+Problem 3:
+ {\center\includegraphics[height=3 in]{flowchartc.jpg}}\\
+\newpage
+
+
+\subsection{Logic Implementation}
+The problem is broken into 3 parts\\
+
+\textbf{1. Searching and executing files}\\
+We first search for all folders using ls. We redirect the output of this to grep to find the strings that match the criteria.
+
+Regex is used for the same.
+
+If the number of files matching is more than 0, then the results are writen to file, otherwise nothing is done.
+
+Finally if the file extension matches sh or c, then the files are executed (compiled and executed in case of c).\\
+
+
+\textbf{2. Renaming folders}\\
+The process is broken into 2 sub problems\\
+
+a) Changing capital alphabets into small.\\
+This is acheived by using the command  'tr' copies standard input to standard output, performing one of the following operations:\\
+* translate, and optionally squeeze repeated characters in the result,\\
+* squeeze repeated characters,\\
+* delete characters,\\
+* delete characters, then squeeze repeated characters from the result.\\
+
+
+b) Replacing space by underscore.
+This is used by using the find command and redirecting the output to rename command.//
+Rename will rename the specified files by replacing the first occurrence of from in their name by to.\\ We are using regex replace to change space  to underscore.\\
+
+\textbf{3. Renaming files}\\
+We use regex and mv command to achieve this
+
+mv is used to Move or rename files or directories.
+
+If the last argument names an existing directory, `mv' moves each other given file into a file with the same name in that directory. Otherwise, if only two files are given, it renames the first as the second. It is an error if the last argument is not a directory and more than two files are given.
+
+We use this to change extension from gif to png
+
+\newpage
+\subsection{Execution Directive}
+No compilation required. Directly run by typing\\
+
+sh code.sh <foldername> <extension type>\\
+
+\subsection{Output Of The Program}
+Running the code\\
+ {\center\includegraphics[height=2.7 in]{ss2.png}}\\
+Sample output file\\
+ {\center\includegraphics[height=2.7 in]{ss1.png}}\\
+
+
+\subsection{Result}
+
+Learnt about regular expressions. Each character in a regular expression is either understood to be a metacharacter with its special meaning, or a regular character with its literal meaning. Together, they can be used to identify textual material of a given pattern, or process a number of instances of it that can vary from a precise equality to a very general similarity of the pattern. The pattern sequence itself is an expression that is a statement in a language designed specifically to represent prescribed targets in the most concise and flexible way to direct the automation of text processing of general text files, specific textual forms, or of random input strings. We used it to search for files and folders matching a given criteria and rename them.\\
+
+\textbf{Problems encountered:}
+\begin{enumerate}
+\item Write permissions error
+\item Execute rights error
+\end{enumerate}
+
+\textbf{Solution}: check and set permissions using chmod\\
+In Unix-like operating systems, chmod is the name of a Unix shell command and a system call, which both change the access permissions to file system objects (including files and directories), as well as specifying special flags.
+
+
+\subsection{Conclusion}
+Successfully developed a code that does the following.
+\begin {itemize}
+\item Open the user given folder and search for the subfolders with names having only small letters and without
+spaces. In these subfolders, write the names of files that have the user given extension into “match.txt” in the required format.
+\item If the given extension is a c or sh, executes the files.
+\item Converts all the capital letters to small case and remove blank spaces in the names of all the subfolders
+of the given folder.
+\item Converts gif files into png in the subfolders which match pattern when the extension type is given gif
+\end{itemize}
+\end{document}

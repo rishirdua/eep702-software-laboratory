@@ -1,0 +1,166 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{graphicx}
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{EEP702, Software Laboratory} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Sentiment Analysis \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Rishi Dua, 2010EE50557} % Your name
+
+\date{\normalsize February 20, 2014} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Bash program}
+
+
+\subsection{Problem statement}
+
+You are given a text file which contains random facebook status. You have to do sentiment analysis of those posts on the basis of
+positive,negative and neutral feelings. To differentiate between feelings, create (hardcode) a dictionary having various positive and
+negative words. Match whether a post has any of those words and if it has, it gets counted into the respective category. Also Include emoticons (for ex. :) for positive and :( for sad). Consider a post having neither positive nor negative feelings as neutral.
+
+Tasks:
+
+\begin {enumerate}
+\item Count the number of posts with each kind of feeling for a given hour
+\item Make a table with entries feeling and its count in terms of posts in a given hour
+\item For each hour,normalize this counted data on the scale of [-1,0,1] i.e. assign weight of -1 to negative feeling, +1 to positive feeling , 0 to neutral feeling and adding all, divide result by total number of posts in that hour.From this calculated data, plot a graph with hour as X-axis and normalized feeling value as Y-axis.
+\item Find the respective hours in which most number of posts arrived for each category of feeling.
+\item Given any two geographically separate places, compare the number of posts in those places containing different category of feelings.
+\item Extract the location of the places in the post and give a graphical representation with the place as X-axis and the normalized mood value for the whole file on Y-axis.
+\item Plot the overall feelings of a location normalized against all other locations
+
+\end{enumerate}
+\subsection{Abstract}
+
+Python is a widely used general-purpose, high-level programming language. Its design philosophy emphasizes code readability, and its syntax allows programmers to express concepts in fewer lines of code than would be possible in languages such as C. The language provides constructs intended to enable clear programs on both a small and large scale.
+Python supports multiple programming paradigms, including object-oriented, imperative and functional programming or procedural styles. It features a dynamic type system and automatic memory management and has a large and comprehensive standard library.\\
+
+Millions of people use Facebook everyday to keep up with friends, upload an unlimited number of photos, share links and videos, and learn more about the people they meet. Comment Policy: We love your comments, but please be respectful of others. Processing this is an important part of Sentiment Analysis.\\
+
+Sentiment analysis (also known as opinion mining) refers to the use of natural language processing, text analysis and computational linguistics to identify and extract subjective information in source materials. Generally speaking, sentiment analysis aims to determine the attitude of a speaker or a writer with respect to some topic or the overall contextual polarity of a document. The attitude may be his or her judgment or evaluation, affective state , or the intended emotional communication.\\
+
+
+\subsection{Specification And Assumptions}
+{\textbf {Tool Specifications:}}\\
+Language used: Python 2.7.3 (default, Sep 26 2013, 20:03:06)  [GCC 4.6.3] on linux2\\
+Platform: Ubuntu 12.04\\
+Additional tools used: gnuplot\\
+Bash Version: GNU bash, version 4.2.25(1)-release (x86\_64-pc-linux-gnu)\\
+
+\textbf{Problem specifications}:
+Assume the following utilities are present on the system\\
+gnuplot\\
+gnuplot python libraries\\
+
+
+{\textbf{Assumptions}}\\
+User has read and write prividlges to run the program, create files and directories\\
+If a  status has both positive and negative sentiment, it is counted in both\\
+
+
+\subsection{Flow chart}
+The flowcharts is as follows
+
+ {\center\includegraphics[scale=0.7]{flowchart.png}}\\
+\newpage
+
+
+\subsection{Logic Implementation}
+\begin {enumerate}
+\item	Take input from the data.txt
+\item	Separate words and time
+\item	for each word, check in dictionary 
+\item check am or pm
+\item	 print in the required format
+\item    Plot the normalized value using gnu
+\end{enumerate}
+
+\subsection{Execution Directive}
+No compilation required. Directly run by typing\\
+
+python code.py\\
+
+\subsection{Output Of The Program}
+\includegraphics[scale=0.8]{ss1.png}\\
+
+\includegraphics[scale=0.6]{ss2.png}\\
+
+\includegraphics[scale=0.8]{ss3.png}\\
+
+\includegraphics[scale=0.6]{ss4a.png}\\
+
+\includegraphics[scale=0.6]{ss4.png}\\
+
+
+\subsection{Result}
+
+The program successfully does the sentiment analysis of given Facebook data\\
+\textbf{Problems encountered:}
+\begin{enumerate}
+\item Write permissions error
+\item Execute rights error
+\end{enumerate}
+
+\textbf{Solution}: check and set permissions using chmod\\
+In Unix-like operating systems, chmod is the name of a Unix shell command and a system call, which both change the access permissions to file system objects (including files and directories), as well as specifying special flags.\\
+
+The data file given for this assignment has the following issues:
+\begin{enumerate}
+\item No proper format. For seniment analysis, the raw file generated by crawler is parsed and used. However, the file given is generated by manually copying the text, hence has a lot of errors
+\item The file has non readable characters (unicode characters inconsistent with the file encoding) and required a cleanup resulting in some loss of data.
+\end{enumerate}
+
+\subsection{Conclusion}
+Learnt about Python programming\\
+
+Python is a multi-paradigm programming language: object-oriented programming and structured programming are fully supported, and there are a number of language features which support functional programming and aspect-oriented programming (including by metaprogramming and by magic methods). Many other paradigms are supported using extensions, including design by contract and logic programming.
+\end{document}

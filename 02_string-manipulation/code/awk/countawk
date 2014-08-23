@@ -1,0 +1,13 @@
+function countsubstring (pat,str) 
+  {
+    n=0;	
+    while (match(str,pat)) {
+        n++;
+	str = substr(str,RSTART+RLENGTH);    	
+    }
+    return n;
+  }
+ 
+  BEGIN {
+    print countsubstring(ARGV[1],ARGV[2]);
+  }

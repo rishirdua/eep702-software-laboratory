@@ -1,0 +1,20 @@
+var NAVTREEINDEX =
+{
+"index.html":[],
+"namespaces.html":[0,0],
+"namespacecleanup.html":[0,0,0],
+"namespacegetweather.html":[0,0,1],
+"namespacewoeidfromcordi.html":[0,0,2],
+"namespacewoeidfromquery.html":[0,0,3],
+"namespacewritefutureweather.html":[0,0,4],
+"namespacewritepastweather.html":[0,0,5],
+"namespacemembers.html":[0,1,0],
+"namespacemembers_func.html":[0,1,1],
+"files.html":[1,0],
+"cleanup_8py.html":[1,0,0],
+"getweather_8py.html":[1,0,1],
+"woeidfromcordi_8py.html":[1,0,2],
+"woeidfromquery_8py.html":[1,0,3],
+"writefutureweather_8py.html":[1,0,4],
+"writepastweather_8py.html":[1,0,5]
+};

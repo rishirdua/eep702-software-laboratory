@@ -1,0 +1,85 @@
+if [ $# -eq 0 ]
+then
+	s1="hello"
+	s2full="ahellohllohellohellohello"
+fi
+if [ $# -eq 1 ]
+then
+	s1=$1
+	s2full="abcdefghijklmnopqrstuvwxyz"
+fi
+if [ $# -eq 2 ]
+then
+	s1=$1
+	s2full=$2
+	if [ ${#s2full} -lt ${#s1} ]
+	then
+		s1=$2
+		s2full=$1
+	fi
+fi
+echo "Please enter m:"
+read m
+
+#ignore varialbe names
+
+childfn()
+{
+	num[$1]=`awk -f countawk $s1 $s2`
+	echo `date --rfc-3339 'ns'` $1 ${num[$1]} >>file.txt
+}
+
+n2=${#s2full}
+n1=${#s1}
+size=$(($n2 / $m))
+echo >file.txt
+
+for i in $(seq 1 $m)
+do
+	s2="${s2full:$(($i*$size-$size)):size}"
+	if [ $i -eq $m ]
+	then
+		s2="${s2full:$(($i*$size-$size))}"
+	fi
+	#s3="./findstr $s1 $s2"
+	childfn $i &
+	npid[$i]=$!
+done
+wait
+
+# print
+temp=0
+threadcount=0
+while read line    
+do    
+	temp=$(($temp+1))
+	if [ $temp -ne 1 ]
+	then
+		# echo -e "$line"
+		a=`echo $line | awk '{split($0,numbers," "); print numbers[1]}'`
+		b=`echo $line | awk '{split($0,numbers," "); print numbers[2]}'`
+		c=`echo $line | awk '{split($0,numbers," "); print numbers[3]}'`
+		d=`echo $line | awk '{split($0,numbers," "); print numbers[4]}'`
+		threadcount=$(($threadcount+$d))
+		echo $a $b ${npid[$c]} [$d times]
+	fi	
+done <file.txt
+
+#find boundary
+sizeb=$((2*$n1-2))
+nbound=0
+for i in $(seq 2 $m)
+do
+	s2="${s2full:$(($size-$n1+1+$i*$size-2*$size)):sizeb}"
+	s3="awk -f countawk $s1 $s2"
+	nboundnew=$($s3)
+	nbound=$(($nbound+$nboundnew))
+done
+
+
+totalcount=$(($threadcount+$nbound))
+echo Total embeddings of s2 in s1 = $totalcount
+
+
+
+
