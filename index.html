@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="EEP 702 Software Laboratory : Modified source codes of my submissions for EEP702 Fall 2013 Semester at IIT Delhi">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>EEP 702 Software Laboratory</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/rishirdua/eep702-software-laboratory">View on GitHub</a>
+
+          <h1 id="project_title">EEP 702 Software Laboratory</h1>
+          <h2 id="project_tagline">Modified source codes of my submissions for EEP702 Fall 2013 Semester at IIT Delhi</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/rishirdua/eep702-software-laboratory/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/rishirdua/eep702-software-laboratory/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="eep702-software-laboratory-iit-delhi-fall-2013-semester" class="anchor" href="#eep702-software-laboratory-iit-delhi-fall-2013-semester"><span class="octicon octicon-link"></span></a>EEP702: Software Laboratory, IIT Delhi (Fall 2013 Semester)</h1>
+
+<h2>
+<a name="disclaimer" class="anchor" href="#disclaimer"><span class="octicon octicon-link"></span></a>Disclaimer:</h2>
+
+<ul>
+<li>The questions have been adapted from the EEP702 Software Laboratory course (Fall 2013 semester) at IIT Delhi. Most of the questions are not exactly the same as in the course. I have added/removed/modified certain parts for my practice.</li>
+<li>The codes and documentation in this repository might have been modified from my original submission for the EEP702 software laboratory course.</li>
+</ul><h2>
+<a name="assignment-1-reverse-spiral-and-string-matching" class="anchor" href="#assignment-1-reverse-spiral-and-string-matching"><span class="octicon octicon-link"></span></a>Assignment 1: Reverse Spiral and String Matching</h2>
+
+<p>Language: Java
+Problem Statement:</p>
+
+<ul>
+<li>Print matrix (M) elements in reverse spiral order ie., starting from the centre element, print all the elements in spiral order until the first element M[0][0] is reached. Matrix M is of order n where n is odd</li>
+<li>Match two strings containing wildcard characters ’?’ and ’<em>’ . ’?’ denotes no or exactly one character and ’</em>’ denotes no or many characters.</li>
+</ul><h2>
+<a name="assignment-2-string-manipulation" class="anchor" href="#assignment-2-string-manipulation"><span class="octicon octicon-link"></span></a>Assignment 2: String manipulation</h2>
+
+<p>Write a program (called NumOfOccurrences) to find how many times a substring s2 occurs in a bigger string s1
+Let 'file.txt' be a text file containing string s1 of alphanumeric characters.</p>
+
+<ul>
+<li>Invocation 1: $ NumOfOccurrences s2\
+only one string is given and it is understood as s2,s1 is hardcoded in the program</li>
+<li>Invocation 2: $ NumOfOccurrences s1 s2
+both strings are specified on the command line and the sequence determines which s s1 and which is s2. Find the total number of occurrences of a substring s2 to be entered by the user.</li>
+</ul><p>Logically divide the string s1 into 'm' number of even partitions and parallely search to count the total number of occurrences of s2 parallely using threads, where 'm' is the number of threads to be entered by the user. Let the length of string s1 [denoted as len(s1) ] be n1 and number of threads be m, then the length of each partition would be (n1/m) and n2 = len(s2) ( &lt; (n1/m)) During runtime, print using an external subroutine StringPrint(*char s) the 'id' of thread in which the substring s2 is found. Each thread will find the occurrence in its local string partition. IPC and message queues can be used for communication among threads, and finally print the total number of occurrences of s2 in s1.</p>
+
+<p>The output of StringPrint(.) looks moreover like this:\
+ [n times]\
+Total embeddings of s2 in s1 = &lt; # &gt;\</p>
+
+<ul>
+<li><p>Repeat the above using C</p></li>
+<li><p>Profile the code in Section a and compare its size with the source code in previous part.</p></li>
+</ul><p>Language: Bash, C</p>
+
+<h2>
+<a name="assigment-3-ubuntu-weather-app" class="anchor" href="#assigment-3-ubuntu-weather-app"><span class="octicon octicon-link"></span></a>Assigment 3: Ubuntu Weather App</h2>
+
+<p>Develop an ubuntu app which can accomplish following two tasks:</p>
+
+<ul>
+<li>Forecasting next few days weather conditions</li>
+<li>Keep record of past few days' weather conditions (max 30 days) in to your database and show it as a strip chart which has a rewind / fast fwd button.</li>
+</ul><p>Use tcl/tk for the GUI to interact with the user and python for other operations. The user will be asked to enter name of a place for which weather conditions have to be forecasted, the number of days (n) for which to show information, and to press a button to decide whether to forecast or tell about the past n days weather conditions. Use MySQL as database. Max 5 days' information need to be recorded. Make use of yahoo api for weather forecasting info. Develop html documentation using Doxygen. Give user an option to provide details of the place either by specifying name of that place or manually entering geographical location (lat/ long).</p>
+
+<p>Language: TCL/TK, SQL</p>
+
+<h2>
+<a name="assignment-4-library-management" class="anchor" href="#assignment-4-library-management"><span class="octicon octicon-link"></span></a>Assignment 4: Library Management</h2>
+
+<p>Write a program in Java only for Library Management.</p>
+
+<p>Use a text file to store the following information about the books available in the library.
+(Title of the book) (Author name) (Publication) (Edition)
+Read from the file and store them as array of objects. Provide user the functionality to search for some books based on Book title, author name, publication or any combination of 
+these.</p>
+
+<p>Add the Library Incharge Login functionality to above program which enables him to add or remove any book from the library. The changes must be reflected in the Library record and all student accounts as well.</p>
+
+<p>Add the Student Login functionality to above program to keep a record of the books issued to each student along with the date of issue.</p>
+
+<p>Add the functionality to above program to calculate total fine imposed in case any user fails to deposit the issued book within a period of 1 week.</p>
+
+<p>Language: Java</p>
+
+<h2>
+<a name="assignment-5-shell-scripting" class="anchor" href="#assignment-5-shell-scripting"><span class="octicon octicon-link"></span></a>Assignment 5: Shell Scripting</h2>
+
+<p>The inputs are name of the folder to be opened and the extension type of the files and these are to be passed through commandline.
+sh 
+Open the user given folder and search for the subfolders with names having only small letters and without spaces. In these subfolders, write the names of files that have the user given extension into “match.txt” in the following format.
+...and so on.
+If the given extension is a c or sh, execute the files assuming the files require no runtime or compile time arguments.
+Convert all the capital letters to small case and remove blank spaces in the names of all the subfolders of the given folder.
+Rename gif files into png extension in the subfolders which match pattern when the extension type is given gif.</p>
+
+<p>Language: Bash</p>
+
+<h2>
+<a name="assignment-6-partition-problem" class="anchor" href="#assignment-6-partition-problem"><span class="octicon octicon-link"></span></a>Assignment 6: Partition Problem</h2>
+
+<p>There are N packets, each with one or more candies. There are K students among which the packets have to be distributed. (Assume K less N for all cases). The parameters N and K have to be provided by the user at run-time. Each student gets only one packet. The number of candies in various packets are (x1, x2, x3,....xk ) , where xi denotes the number of candies in the ith packet. Find the number of triplets (x1, x2, x3) possible such that sum of the candies (x1 + x2 + x3) is even.</p>
+
+<p>Divide the packets into two parts (p1 and p2) such that the difference (|p1-p2|) is minimum, where p1 and p2 are the total number of candies in part 1 and part 2 respectively.</p>
+
+<p>Language: Java</p>
+
+<h2>
+<a name="assignment-7-sentiment-analysis" class="anchor" href="#assignment-7-sentiment-analysis"><span class="octicon octicon-link"></span></a>Assignment 7: Sentiment Analysis</h2>
+
+<p>You are given a text file which contains random facebook status. You have to do sentiment analysis of those posts on the basis of
+positive,negative and neutral feelings. To differentiate between feelings, create (hardcode) a dictionary having various positive and
+negative words. Match whether a post has any of those words and if it has, it gets counted into the respective category. Also Include emoticons (for ex. :) for positive and :( for sad). Consider a post having neither positive nor negative feelings as neutral.</p>
+
+<p>Tasks:</p>
+
+<ul>
+<li>Count the number of posts with each kind of ‘feeling’ for a given hour</li>
+<li>Make a table with entries “feeling” and “its count in terms of posts in a given hour</li>
+<li>For each hour,normalize this counted data on the scale of [-1,0,1] i.e. assign weight of -1 to negative feeling, +1 to positive feeling , 0 to neutral feeling and adding all, divide result by total number of posts in that hour.From this calculated data, plot a graph with hour as X-axis and normalized feeling value as Y-axis.</li>
+<li>Find the respective hours in which most number of posts arrived for each category of feeling.</li>
+<li>Given any two “geographically separate” places, compare the number of posts in those places containing different category of feelings.</li>
+<li>Extract the location of the places in the post and give a graphical representation with the place as X-axis and the normalized mood value for the whole file on Y-axis.</li>
+<li>Plot the overall feelings of a location normalized against all other locations</li>
+</ul><p>Language: Python</p>
+
+<h2>
+<a name="assignment-8-qt-gui-design" class="anchor" href="#assignment-8-qt-gui-design"><span class="octicon octicon-link"></span></a>Assignment 8: QT GUI Design</h2>
+
+<p>Design a user interface(GUI) in Qt. The user will be asked to enter a number in numeric
+(say, 55) and will be provided a button named “Convert to text”. On pressing this button, the
+entered number should be displayed in words (fifty five).</p>
+
+<p>Add one more feature to the above GUI, which will enable user to enter a number in text
+(fifty five). Add one button named “Convert to Number”, on pressing which the entered
+number in words will be shown in numeric digits (55).</p>
+
+<p>Language: QT</p>
+
+<h2>
+<a name="assignment-9-inline-assembly-in-c" class="anchor" href="#assignment-9-inline-assembly-in-c"><span class="octicon octicon-link"></span></a>Assignment 9: Inline Assembly in C</h2>
+
+<p>Given two integers, write a time efficient c code, that spends as less time in memory access and more in calculations as possible, to get their GCD and LCM. Use directives for conditional compilation of code as follows.
+Identifier Status: 1 -&gt; GCD
+Identifier Status: 0 -&gt; LCM
+Find the critical parts of code that consume more percentage of time and replace those parts with inline assembly coding to optimize speed and compare the time profiling for both codes.</p>
+
+<ul>
+<li>Find the most significant non zero bit position for largest of the two given integers using pure c code and inline assembled c code and show which one is faster.</li>
+<li>Convert the given integer(assumed to be angle in degrees) to radians and find the floating cosine value with pure c and inline assembled c and determine fastest one.</li>
+</ul><p>Languages: C, Assembly</p>
+
+<h2>
+<a name="assignment-10-connected-component-labelling" class="anchor" href="#assignment-10-connected-component-labelling"><span class="octicon octicon-link"></span></a>Assignment 10: Connected component labelling</h2>
+
+<ul>
+<li>There is a mass of land containing some finites number of water bodies. Let the piece of land be represented by a 2-D matrix, whose each cell represents a unit area. Value '0' of a cell denotes
+that it comes under land area and '1' denotes that it comes under water body. If the cells connected by a 4-point connectivity forms a single water body, find the total number of water bodies.</li>
+<li>If the cells connected by a 8-point connectivity forms a single water body, find the total number of water bodies.</li>
+<li>Label the water bodies so that if user specifies a cell (m,n), the program must tell whether it comes under a water body.</li>
+</ul><p>Language: Python</p>
+
+<h2>
+<a name="contribute" class="anchor" href="#contribute"><span class="octicon octicon-link"></span></a>Contribute:</h2>
+
+<ul>
+<li>Source Code: <a href="https://github.com/rishirdua/eep702-software-laboratory">https://github.com/rishirdua/eep702-software-laboratory</a>
+</li>
+<li>Project page: <a href="http://rishirdua.github.io/eep702-software-laboratory">http://rishirdua.github.io/eep702-software-laboratory</a>
+</li>
+</ul><h2>
+<a name="licence" class="anchor" href="#licence"><span class="octicon octicon-link"></span></a>Licence:</h2>
+
+<p>This project is licensed under the terms of the MIT license. See LICENCE.txt for details</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">EEP 702 Software Laboratory maintained by <a href="https://github.com/rishirdua">rishirdua</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
